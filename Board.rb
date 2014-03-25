@@ -1,6 +1,8 @@
 class Board
   Tuple = Struct.new(:x, :y)
 
+  attr_reader :board
+
   def initialize
     @rand = Random.new
     @board = Array.new
@@ -14,16 +16,6 @@ class Board
     fill_random_index
     fill_random_index
   end
-
-  def draw
-    (0..3).each { |x| 
-      puts "\n"
-      (0..3).each { |y| 
-        print "\t", @board[x][y], "\t"
-      }
-      puts "\n\n"
-    }
-  end 
 
   private
 
