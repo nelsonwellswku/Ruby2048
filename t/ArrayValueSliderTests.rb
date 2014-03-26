@@ -55,4 +55,54 @@ class ArrayValueSliderTests < Minitest::Test
 
   end 
 
+  def test_simple_slide_right
+    
+    # arrange
+    arr = [
+      [0, 0, 0, 0],
+      [2, 0, 0, 0],
+      [0, 0, 0, 0],
+      [2, 0, 0, 0]
+    ] 
+
+    expected_arr = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 2],
+      [0, 0, 0, 0],
+      [0, 0, 0, 2]
+    ]
+    
+    # act
+    slider = ArrayValueSlider.new
+    slider.right!(arr)
+    
+    # assert
+    assert_equal(expected_arr, arr)
+  end
+
+  def test_simple_slide_left
+    
+    # arrange
+    arr = [
+      [0, 0, 0, 2],
+      [0, 0, 0, 0],
+      [0, 0, 0, 2],
+      [0, 0, 0, 0]
+    ] 
+
+    expected_arr = [
+      [2, 0, 0, 0],
+      [0, 0, 0, 0],
+      [2, 0, 0, 0],
+      [0, 0, 0, 0]
+    ]
+    
+    # act
+    slider = ArrayValueSlider.new
+    slider.left!(arr)
+    
+    # assert
+    assert_equal(expected_arr, arr)
+  end
+
 end

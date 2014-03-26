@@ -22,10 +22,24 @@ class ArrayValueSlider
   end
 
   def left!(arr)
-
+    3.downto(1).each { |y|
+      (0..3).each { |x|
+        unless(arr[x][y] == 0)
+          arr[x][y-1] = arr[x][y]
+          arr[x][y] = 0
+        end
+      }
+    }
   end
 
   def right!(arr)
-
+    (0..2).each { |y|
+      (0..3).each { |x|
+        unless(arr[x][y] == 0)
+          arr[x][y+1] = arr[x][y]
+          arr[x][y] = 0
+        end
+      }
+    }
   end
 end
