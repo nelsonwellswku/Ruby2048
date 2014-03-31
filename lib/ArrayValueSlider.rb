@@ -1,13 +1,6 @@
 class ArrayValueSlider
   def up!(arr)
-    3.downto(1).each { |x|
-      (0..3).each { |y|
-        unless(arr[x][y] == 0)
-          arr[x-1][y] = arr[x][y]
-          arr[x][y] = 0 
-        end 
-      }
-    }
+    slide_up!(arr) 
   end
 
   def down!(arr)
@@ -41,5 +34,23 @@ class ArrayValueSlider
         end
       }
     }
+  end
+
+  private
+
+  def slide_up!(arr)
+    (0..3).each { |x|
+      (0..3).each { |y|
+        if(arr[x][y] == 0)
+          (x..3).each { |subx| 
+            if(arr[subx][y] != 0) then
+              arr[x][y] = arr[subx][y]
+              arr[subx][y] = 0
+              break;
+            end 
+          }
+        end
+      }
+    }  
   end
 end
