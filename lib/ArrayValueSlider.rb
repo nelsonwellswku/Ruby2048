@@ -1,6 +1,7 @@
 class ArrayValueSlider
   def up!(arr)
     slide_up!(arr) 
+    merge_up!(arr)
   end
 
   def down!(arr)
@@ -52,5 +53,18 @@ class ArrayValueSlider
         end
       }
     }  
+  end
+
+  def merge_up!(arr)
+    [0, 2].each { |x|
+      (0..3).each { |y|
+        if(arr[x][y] == arr[x+1][y]) then
+          arr[x][y] += arr[x][y] 
+          arr[x+1][y] = 0
+        end
+      }
+    }
+
+    slide_up!(arr)
   end
 end
