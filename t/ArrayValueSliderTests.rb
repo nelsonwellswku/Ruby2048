@@ -208,6 +208,57 @@ class ArrayValueSliderTests < Minitest::Test
     assert_equal(expected_arr, arr)
   end
 
+  def test_slide_left_impact_no_merge
+
+    # arrange
+    arr = [
+      [0, 0, 2, 4],
+      [2, 0, 4, 0],
+      [2, 4, 0, 0],
+      [2, 0, 0, 4]
+    ]
+
+    expected_arr = [
+      [2, 4, 0, 0],
+      [2, 4, 0, 0],
+      [2, 4, 0, 0],
+      [2, 4, 0, 0]
+    ]
+
+    # act
+    slider = ArrayValueSlider.new
+    slider.left!(arr)
+
+    # assert
+    assert_equal(expected_arr, arr) 
+
+  end
+
+  def test_slide_left_impact_merge
+    # arrange
+    arr = [
+      [0, 0, 2, 2],
+      [2, 2, 0, 2],
+      [2, 2, 2, 2],
+      [2, 4, 0, 4]
+    ]
+
+    expected_arr = [
+      [4, 0, 0, 0],
+      [4, 2, 0, 0],
+      [4, 4, 0, 0],
+      [2, 8, 0, 0]
+    ]
+
+    # act
+    slider = ArrayValueSlider.new
+    slider.left!(arr)
+
+    # assert
+    assert_equal(expected_arr, arr) 
+
+  end
+
   private
 
   def zeros 
