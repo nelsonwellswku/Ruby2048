@@ -50,7 +50,7 @@ class ArrayValueSlider
   end
 
   def merge_up!(arr)
-    [0, 2].each { |x|
+    (0..2).each { |x|
       (0..3).each { |y|
         if(arr[x][y] == arr[x+1][y]) then
           arr[x][y] += arr[x][y] 
@@ -80,7 +80,7 @@ class ArrayValueSlider
 
   def merge_left!(arr)
     (0..3).each { |x|
-      [0, 2].each { |y|
+      (0..2).each { |y|
         if(arr[x][y] == arr[x][y+1]) then
           arr[x][y] += arr[x][y]
           arr[x][y+1] = 0
