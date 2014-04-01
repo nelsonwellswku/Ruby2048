@@ -132,6 +132,32 @@ class ArrayValueSliderTests < Minitest::Test
 
   end
 
+  def test_complex_merge_up
+
+    # arrange
+    arr = [
+      [2, 8, 2, 4],
+      zeros,
+      [2, 8, 4, 4],
+      [2, 4, 4, 8]
+    ]
+
+    expected_arr = [
+      [4, 16, 2, 8],
+      [2, 4,  8, 8],
+      zeros,
+      zeros
+    ]
+
+    # act
+    slider = ArrayValueSlider.new
+    slider.up!(arr)
+    
+    # assert
+    assert_equal(expected_arr, arr)
+
+  end
+
   def test_simple_slide_down
     
     # arrange
@@ -235,6 +261,7 @@ class ArrayValueSliderTests < Minitest::Test
   end
 
   def test_slide_left_impact_merge
+
     # arrange
     arr = [
       [0, 0, 2, 2],
