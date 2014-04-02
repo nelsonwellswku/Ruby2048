@@ -21,14 +21,8 @@ class ArrayValueSlider
   end
 
   def right!(arr)
-    (0..2).each { |y|
-      (0..3).each { |x|
-        unless(arr[x][y] == 0)
-          arr[x][y+1] = arr[x][y]
-          arr[x][y] = 0
-        end
-      }
-    }
+    slide_right!(arr)
+    merge_right!(arr)
   end
 
   private
@@ -41,7 +35,7 @@ class ArrayValueSlider
             if(arr[subx][y] != 0) then
               arr[x][y] = arr[subx][y]
               arr[subx][y] = 0
-              break;
+              break
             end 
           }
         end
@@ -70,7 +64,7 @@ class ArrayValueSlider
             if(arr[x][suby] != 0) then
               arr[x][y] = arr[x][suby]
               arr[x][suby] = 0
-              break;
+              break
             end
           }
         end  
@@ -89,5 +83,34 @@ class ArrayValueSlider
     }
 
     slide_left!(arr)
+  end
+
+  def slide_right!(arr)
+    (0..3).each{ |x|
+      3.downto(0).each { |y| 
+        if(arr[x][y] == 0) then
+          y.downto(0).each { |suby|
+            if(arr[x][suby] != 0) then
+              arr[x][y] = arr[x][suby]
+              arr[x][suby] = 0
+              break
+            end
+          }
+        end
+      }
+    }
+  end
+
+  def merge_right!(arr)
+    (0..3).each { |x|
+      3.downto(0).each { |y|
+        if(arr[x][y] == arr[x][y-1]) then
+          arr[x][y] += arr[x][y]
+          arr[x][y-1] = 0
+        end
+      } 
+    }    
+
+    slide_right!(arr)
   end
 end
