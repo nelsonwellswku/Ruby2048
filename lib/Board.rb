@@ -1,11 +1,15 @@
+require_relative "./ArrayValueSlider"
+require_relative "./RandomComputerTurn"
+
 class Board
-  Tuple = Struct.new(:x, :y)
 
   attr_reader :board
 
-  def initialize
-    @rand = Random.new
+  def initialize(slider = nil, computer_turn = nil)
     @board = Array.new
+    @slider = slider || ArrayValueSlider.new
+    @computer_turn = computer_turn || RandomComputerTurn.new
+
     (0..3).each { |x|
       @board[x] = Array.new
       (0..3).each { |y| 
@@ -13,29 +17,24 @@ class Board
       }
     } 
 
-    fill_random_index
-    fill_random_index
+    @board[1][0] = 2 
+    @board[1][1] = 2
   end
 
-  private
-
-  def random_open_index
-    (0..3).to_a.shuffle.each { |x|
-      (0..3).to_a.shuffle.each { |y|
-        if(@board[x][y] == 0) then
-          tuple = Tuple.new
-          tuple.x = x
-          tuple.y = y
-          return tuple
-        end 
-      }
-    } 
-    
-    nil
+  def slide_up!
+    @slider.up!(@board)
   end
 
-  def fill_random_index 
-    tuple = random_open_index
-    @board[tuple.x][tuple.y] = 2
+  def slide_down!
+    @slider.down!(@board)
   end
+
+  def slide_left!
+    @slider.left!(@board)
+  end
+
+  def slide_right!
+    @slider.right!(@board)
+  end
+
 end
