@@ -10,7 +10,6 @@ class GameManager
       board_renderer.draw
       puts "Next turn?"
       turn = gets
-      puts turn
       turn = turn.chomp
       case turn
       when "u"

@@ -23,18 +23,30 @@ class Board
 
   def slide_up!
     @slider.up!(@board)
+
+    # TODO: This needs a unit test
+    @computer_turn.make_move!(self)
   end
 
   def slide_down!
     @slider.down!(@board)
+
+    # TODO: This needs a unit test
+    @computer_turn.make_move!(self)
   end
 
   def slide_left!
     @slider.left!(@board)
+
+    # TODO: This needs a unit test
+    @computer_turn.make_move!(self)
   end
 
   def slide_right!
     @slider.right!(@board)
+
+    # TODO: This needs a unit test
+    @computer_turn.make_move!(self)
   end
 
   def game_over?
