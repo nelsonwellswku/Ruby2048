@@ -37,4 +37,14 @@ class Board
     @slider.right!(@board)
   end
 
+  def game_over?
+    (0..3).each { |x|
+      (0..3).each { |y| 
+        return false if @board[x][y] == 0  
+      }
+    }
+
+    true
+  end
+
 end

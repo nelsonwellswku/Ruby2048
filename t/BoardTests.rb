@@ -1,6 +1,16 @@
 require "minitest/autorun"
 require_relative "../lib/Board"
 
+class FakeBoardSetterSlider
+  def up!(arr)
+    (0..3).each { |x|
+      (0..3).each { |y|
+        arr[x][y] = 2
+      }
+    }
+  end
+end
+
 class FakeSlider
   def up!(arr)
     arr[0][0] = :up    
@@ -55,7 +65,19 @@ class BoardTests < Minitest::Test
     board.slide_right!
     assert_corner_value(board.board, :right)
   end
-  
+
+  def test_game_over_is_game_over
+    board = Board.new(FakeBoardSetterSlider.new)
+    board.slide_up!
+    
+    assert_equal(true, board.game_over?) 
+  end
+
+  def test_game_over_is_not_game_over
+    board = Board.new
+    assert_equal(false, board.game_over?)  
+  end
+
   private
 
   def assert_corner_value(arr, val)
