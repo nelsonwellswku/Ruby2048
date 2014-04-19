@@ -158,6 +158,40 @@ class ArrayValueSliderTests < Minitest::Test
 
   end
 
+  def test_merge_up_slides_returns_true
+    # arrange
+    arr = [
+      zeros,
+      [2, 0, 0, 0],
+      zeros,
+      zeros
+    ]
+    
+    # act
+    returned = slider.up!(arr) 
+
+    # assert
+    assert_equal(true, returned)
+  end
+
+
+  def test_merge_up_no_slide_returns_false
+    # arrange
+    arr = [
+      [2, 0, 0, 0],
+      zeros,
+      zeros,
+      zeros
+    ]
+
+    # act
+    returned = slider.up!(arr)
+
+    # assert
+    assert_equal(false, returned)
+
+  end
+
   def test_simple_slide_down
     
     # arrange
