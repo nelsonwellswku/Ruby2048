@@ -2,6 +2,9 @@ class RandomComputerTurn
 
   def make_move!(board)
     tuple =  random_open_index(board.board)
+    # TODO: This should choose between 2 and 4
+    # 2 = 90% of the time
+    # 4 = 10% of the time
     board.board[tuple.x][tuple.y] = 2 
   end
 

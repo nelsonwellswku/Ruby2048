@@ -1,6 +1,6 @@
 require './lib/Board'
 require './lib/BoardRenderer'
+require './lib/GameManager'
 
-board = Board.new
-board_renderer = BoardRenderer.new(board)
-board_renderer.draw
+game = GameManager.new
+game.run
