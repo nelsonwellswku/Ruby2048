@@ -11,25 +11,12 @@ class FakeBoardSetterSlider
   end
 end
 
-class FakeSlider
-  def up!(arr)
-    arr[0][0] = :up    
-  end
-
-  def down!(arr)
-    arr[0][0] = :down
-  end
-
-  def left!(arr)
-    arr[0][0] = :left
-  end
-
-  def right!(arr)
-    arr[0][0] = :right
-  end
-end
-
 class BoardTests < Minitest::Test
+  def setup
+    @slider_mock = Minitest::Mock.new
+    @board = Board.new(@slider_mock)
+  end
+
   def test_init
     expected = [
       [0, 0, 0, 0],
@@ -38,32 +25,31 @@ class BoardTests < Minitest::Test
       [0, 0, 0, 0]
     ]
 
-    board = Board.new
-    assert_equal(expected, board.board) 
+    assert_equal(expected, @board.board) 
   end 
 
   def test_up_calls_up
-    board = Board.new(FakeSlider.new)
-    board.slide_up!
-    assert_corner_value(board.board, :up)
+    @slider_mock.expect(:up!, nil, [@board.board])
+    @board.slide_up!
+    @slider_mock.verify
   end
 
   def test_down_calls_down
-    board = Board.new(FakeSlider.new)
-    board.slide_down!
-    assert_corner_value(board.board, :down)
+    @slider_mock.expect(:down!, nil, [@board.board])
+    @board.slide_down!
+    @slider_mock.verify
   end
 
   def test_left_calls_left
-    board = Board.new(FakeSlider.new)
-    board.slide_left!
-    assert_corner_value(board.board, :left)
+    @slider_mock.expect(:left!, nil, [@board.board])
+    @board.slide_left!
+    @slider_mock.verify
   end
 
   def test_right_calls_right
-    board = Board.new(FakeSlider.new)
-    board.slide_right!
-    assert_corner_value(board.board, :right)
+    @slider_mock.expect(:right!, nil, [@board.board])
+    @board.slide_right!
+    @slider_mock.verify
   end
 
   def test_game_over_is_game_over
