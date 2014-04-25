@@ -168,6 +168,7 @@ class ArrayValueSliderTests < Minitest::Test
     ]
     
     # act
+    slider = ArrayValueSlider.new
     returned = slider.up!(arr) 
 
     # assert
@@ -185,6 +186,7 @@ class ArrayValueSliderTests < Minitest::Test
     ]
 
     # act
+    slider = ArrayValueSlider.new
     returned = slider.up!(arr)
 
     # assert
