@@ -1,7 +1,8 @@
 class ArrayValueSlider
   def up!(arr)
-    slide_up!(arr) 
-    merge_up!(arr)
+    moved = slide_up!(arr)
+    merge_up!(arr) if moved
+    moved
   end
 
   def down!(arr)
@@ -22,6 +23,7 @@ class ArrayValueSlider
   private
 
   def slide_up!(arr)
+    board_moved = false
     (0..3).each { |x|
       (0..3).each { |y|
         if(arr[x][y] == 0)
@@ -29,12 +31,14 @@ class ArrayValueSlider
             if(arr[subx][y] != 0) then
               arr[x][y] = arr[subx][y]
               arr[subx][y] = 0
+              board_moved = true
               break
             end 
           }
         end
       }
     }  
+    board_moved
   end
 
   def merge_up!(arr)
