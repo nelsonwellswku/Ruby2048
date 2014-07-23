@@ -22,31 +22,31 @@ class Board
   end
 
   def slide_up!
-    @slider.up!(@board)
+    moved = @slider.up!(@board)
 
     # TODO: This needs a unit test
-    @computer_turn.make_move!(self)
+    @computer_turn.make_move!(self) if moved
   end
 
   def slide_down!
-    @slider.down!(@board)
+    moved = @slider.down!(@board)
 
     # TODO: This needs a unit test
-    @computer_turn.make_move!(self)
+    @computer_turn.make_move!(self) if moved
   end
 
   def slide_left!
-    @slider.left!(@board)
+    moved = @slider.left!(@board)
 
     # TODO: This needs a unit test
-    @computer_turn.make_move!(self)
+    @computer_turn.make_move!(self) if moved
   end
 
   def slide_right!
-    @slider.right!(@board)
+    moved = @slider.right!(@board)
 
     # TODO: This needs a unit test
-    @computer_turn.make_move!(self)
+    @computer_turn.make_move!(self) if moved
   end
 
   def game_over?
